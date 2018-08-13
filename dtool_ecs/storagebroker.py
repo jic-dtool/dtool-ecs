@@ -110,6 +110,17 @@ class ECSStorageBroker(S3StorageBroker):
 
         return uri
 
-
     def http_enable(self):
         raise(AttributeError())
+
+    def _list_historical_readme_keys(self):
+        # This method is used to test the
+        # BaseStorageBroker.readme_update method.
+        prefix = self.get_readme_key() + "-"
+        historical_readme_keys = []
+
+        bucket = self.s3resource.Bucket(self.bucket)
+        for obj in bucket.objects.filter(Prefix=prefix).all():
+            historical_readme_keys.append(obj.key)
+
+        return historical_readme_keys
