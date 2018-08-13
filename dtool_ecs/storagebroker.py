@@ -1,6 +1,7 @@
 """ECSStorageBroker"""
 
 import os
+import copy
 
 try:
     from urlparse import urlunparse
@@ -15,6 +16,11 @@ from dtoolcore.utils import (
     get_config_value,
     generous_parse_uri,
 )
+
+from dtool_ecs import __version__
+
+_ECS_STRUCTURE_PARAMETERS = copy.deepcopy(_STRUCTURE_PARAMETERS)
+_ECS_STRUCTURE_PARAMETERS["storage_broker_version"] = __version__
 
 
 class ECSStorageBroker(S3StorageBroker):
@@ -42,7 +48,7 @@ class ECSStorageBroker(S3StorageBroker):
         self.s3resource = session.resource('s3', endpoint_url=ecs_endpoint)
         self.s3client = session.client('s3', endpoint_url=ecs_endpoint)
 
-        self._structure_parameters = _STRUCTURE_PARAMETERS
+        self._structure_parameters = _ECS_STRUCTURE_PARAMETERS
         self.dataset_registration_key = 'dtool-{}'.format(self.uuid)
         self._structure_parameters["dataset_registration_key"] = self.dataset_registration_key  # NOQA
 
