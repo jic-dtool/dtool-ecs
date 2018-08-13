@@ -16,7 +16,7 @@ Installation
 
 To install the dtool-ecs package::
 
-    python setup.py install
+    pip install dtool-ecs
 
 Configuration
 -------------
