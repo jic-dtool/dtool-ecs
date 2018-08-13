@@ -109,3 +109,7 @@ class ECSStorageBroker(S3StorageBroker):
         uri = urlunparse((scheme, netloc, uuid, _, _, _))
 
         return uri
+
+
+    def http_enable(self):
+        raise(AttributeError())
