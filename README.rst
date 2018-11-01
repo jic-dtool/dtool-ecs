@@ -1,7 +1,12 @@
 Add ECS S3 support to dtool
 ===========================
 
+.. image:: https://badge.fury.io/py/dtool-ecs.svg
+   :target: http://badge.fury.io/py/dtool-ecs
+   :alt: PyPi package
+
 - GitHub: https://github.com/jic-dtool/dtool-ecs
+- PyPI: https://pypi.python.org/pypi/dtool-ecs
 - Free software: MIT License
 
 Features
