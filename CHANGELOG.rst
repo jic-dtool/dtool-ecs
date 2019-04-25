@@ -14,6 +14,9 @@ Added
 Changed
 ^^^^^^^
 
+- Cache environment variable changed from DTOOL_ECS_CACHE_DIRECTORY to DTOOL_CACHE_DIRECTORY
+- Default cache directory changed from ``~/.cache/dtool/ecs`` to ``~/.cache/dtool``
+
 
 Deprecated
 ^^^^^^^^^^

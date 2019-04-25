@@ -1,6 +1,5 @@
 """ECSStorageBroker"""
 
-import os
 import copy
 
 try:
@@ -15,6 +14,7 @@ from dtool_s3.storagebroker import S3StorageBroker, _STRUCTURE_PARAMETERS
 from dtoolcore.utils import (
     get_config_value,
     generous_parse_uri,
+    DEFAULT_CACHE_PATH,
 )
 
 from dtool_ecs import __version__
@@ -63,9 +63,9 @@ class ECSStorageBroker(S3StorageBroker):
         self.http_manifest_key = self._generate_key("http_manifest_key")
 
         self._s3_cache_abspath = get_config_value(
-            "DTOOL_ECS_CACHE_DIRECTORY",
+            "DTOOL_CACHE_DIRECTORY",
             config_path=config_path,
-            default=os.path.expanduser("~/.cache/dtool/ecs")
+            default=DEFAULT_CACHE_PATH
         )
 
     @classmethod
