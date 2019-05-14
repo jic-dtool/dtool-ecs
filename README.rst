@@ -30,7 +30,26 @@ Create the file ``.config/dtool/dtool.json`` and add the ECS account details
 using the format below::
 
     {
-       "DTOOL_ECS_ENDPOINT": "http://blueberry.famous.uni.ac.uk",
-       "DTOOL_ECS_ACCESS_KEY_ID": "olssont",
-       "DTOOL_ECS_SECRET_ACCESS_KEY": "some-secret-token"
+       "DTOOL_ECS_ENDPOINT_<BUCKET NAME>": "<ENDPOINT URL HERE>",
+       "DTOOL_ECS_ACCESS_KEY_<BUCKET NAME>": "<USER NAME HERE>",
+       "DTOOL_ECS_SECRET_ACCESS_KEY_<BUCKET NAME>": "<KEY HERE>"
     }
+
+For example::
+
+    {
+       "DTOOL_ECS_ENDPOINT_my-bucket": "http://blueberry.famous.uni.ac.uk",
+       "DTOOL_ECS_ACCESS_KEY_ID_my-bucket": "olssont",
+       "DTOOL_ECS_SECRET_ACCESS_KEY_my-bucket": "some-secret-token"
+    }
+
+See the `dtool documentation <http://dtool.readthedocs.io>`_ for more detail.
+
+Related packages
+----------------
+
+- `dtoolcore <https://github.com/jic-dtool/dtoolcore>`_
+- `dtool-http <https://github.com/jic-dtool/dtool-http>`_
+- `dtool-s3 <https://github.com/jic-dtool/dtool-s3>`_
+- `dtool-azure <https://github.com/jic-dtool/dtool-azure>`_
+- `dtool-irods <https://github.com/jic-dtool/dtool-irods>`_

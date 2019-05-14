@@ -104,10 +104,32 @@ def tmp_uuid_and_uri(request):
     admin_metadata = generate_admin_metadata("test_dataset")
     uuid = admin_metadata["uuid"]
 
+    # The namespace needs to be configured in ~/.config/dtool/dtool.json
+
     uri = ECSStorageBroker.generate_uri(
         "test_dataset",
         uuid,
-        "ecs://temp_bucket_olssont"
+        "ecs://test1"
+    )
+
+    @request.addfinalizer
+    def teardown():
+        _remove_dataset(uri)
+
+    return (uuid, uri)
+
+
+@pytest.fixture
+def tmp_uuid_and_uri_from_second_namespace(request):
+    admin_metadata = generate_admin_metadata("test_dataset")
+    uuid = admin_metadata["uuid"]
+
+    # The namespace needs to be configured in ~/.config/dtool/dtool.json
+
+    uri = ECSStorageBroker.generate_uri(
+        "test_dataset",
+        uuid,
+        "ecs://test2"
     )
 
     @request.addfinalizer

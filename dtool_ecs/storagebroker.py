@@ -36,9 +36,15 @@ class ECSStorageBroker(S3StorageBroker):
 
         self.uuid = uuid
 
-        ecs_endpoint = get_config_value("DTOOL_ECS_ENDPOINT")
-        ecs_access_key_id = get_config_value("DTOOL_ECS_ACCESS_KEY_ID")
-        ecs_secret_access_key = get_config_value("DTOOL_ECS_SECRET_ACCESS_KEY")
+        ecs_endpoint = get_config_value(
+            "DTOOL_ECS_ENDPOINT_{}".format(self.bucket)
+        )
+        ecs_access_key_id = get_config_value(
+            "DTOOL_ECS_ACCESS_KEY_ID_{}".format(self.bucket)
+        )
+        ecs_secret_access_key = get_config_value(
+            "DTOOL_ECS_SECRET_ACCESS_KEY_{}".format(self.bucket)
+        )
 
         session = Session(
             aws_access_key_id=ecs_access_key_id,
@@ -73,9 +79,18 @@ class ECSStorageBroker(S3StorageBroker):
         """Return list containing URIs with base URI."""
         uri_list = []
 
-        ecs_endpoint = get_config_value("DTOOL_ECS_ENDPOINT")
-        ecs_access_key_id = get_config_value("DTOOL_ECS_ACCESS_KEY_ID")
-        ecs_secret_access_key = get_config_value("DTOOL_ECS_SECRET_ACCESS_KEY")
+        parse_result = generous_parse_uri(base_uri)
+        bucket = parse_result.netloc
+
+        ecs_endpoint = get_config_value(
+            "DTOOL_ECS_ENDPOINT_{}".format(bucket)
+        )
+        ecs_access_key_id = get_config_value(
+            "DTOOL_ECS_ACCESS_KEY_ID_{}".format(bucket)
+        )
+        ecs_secret_access_key = get_config_value(
+            "DTOOL_ECS_SECRET_ACCESS_KEY_{}".format(bucket)
+        )
 
         session = Session(
             aws_access_key_id=ecs_access_key_id,
