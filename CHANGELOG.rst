@@ -31,6 +31,16 @@ Security
 ^^^^^^^^
 
 
+[0.3.1] - 2019-09-19
+--------------------
+
+Fixed
+^^^^^
+
+- Increased the number of connection retries to 20 from the default of 4
+  to make it more robust
+
+
 [0.3.0] - 2019-05-14
 --------------------
 

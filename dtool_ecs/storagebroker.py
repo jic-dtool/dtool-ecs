@@ -7,6 +7,7 @@ try:
 except ImportError:
     from urllib.parse import urlunparse
 
+from botocore.config import Config
 from boto3.session import Session
 
 from dtool_s3.storagebroker import S3StorageBroker, _STRUCTURE_PARAMETERS
@@ -21,6 +22,9 @@ from dtool_ecs import __version__
 
 _ECS_STRUCTURE_PARAMETERS = copy.deepcopy(_STRUCTURE_PARAMETERS)
 _ECS_STRUCTURE_PARAMETERS["storage_broker_version"] = __version__
+
+# Increase number of of retry attempts (from default 4).
+BOTO3_CONFIG = Config(retries={"max_attempts": 20})
 
 
 class ECSStorageBroker(S3StorageBroker):
@@ -51,8 +55,16 @@ class ECSStorageBroker(S3StorageBroker):
             aws_secret_access_key=ecs_secret_access_key
         )
 
-        self.s3resource = session.resource('s3', endpoint_url=ecs_endpoint)
-        self.s3client = session.client('s3', endpoint_url=ecs_endpoint)
+        self.s3resource = session.resource(
+            's3',
+            endpoint_url=ecs_endpoint,
+            config=BOTO3_CONFIG
+        )
+        self.s3client = session.client(
+            's3',
+            endpoint_url=ecs_endpoint,
+            config=BOTO3_CONFIG
+        )
 
         self._structure_parameters = _ECS_STRUCTURE_PARAMETERS
         self.dataset_registration_key = 'dtool-{}'.format(self.uuid)
@@ -97,7 +109,11 @@ class ECSStorageBroker(S3StorageBroker):
             aws_secret_access_key=ecs_secret_access_key
         )
 
-        resource = session.resource('s3', endpoint_url=ecs_endpoint)
+        resource = session.resource(
+            's3',
+            endpoint_url=ecs_endpoint,
+            config=BOTO3_CONFIG
+        )
 
         parse_result = generous_parse_uri(base_uri)
         bucket_name = parse_result.netloc
