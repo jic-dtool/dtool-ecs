@@ -1,7 +1,7 @@
 from setuptools import setup
 
 url = "https://github.com/jic-dtool/dtool-ecs"
-version = "0.3.1"
+version = "0.4.0"
 readme = open('README.rst').read()
 
 setup(
@@ -20,7 +20,7 @@ setup(
         "dtoolcore>=3.10",
         "dtool_cli",
         "boto3",
-        "dtool-s3",
+        "dtool-s3>=0.7.0",
     ],
     entry_points={
         "dtool.storage_brokers": [
