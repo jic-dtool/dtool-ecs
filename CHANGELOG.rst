@@ -10,8 +10,6 @@ This change log uses principles from `keep a changelog <http://keepachangelog.co
 Added
 ^^^^^
 
-- Added support for dataset annotations
-
 
 Changed
 ^^^^^^^
@@ -31,6 +29,15 @@ Fixed
 
 Security
 ^^^^^^^^
+
+
+[0.4.0] - 2019-11-19
+--------------------
+
+Added
+^^^^^
+
+- Added support for dataset annotations
 
 
 [0.3.1] - 2019-09-19
