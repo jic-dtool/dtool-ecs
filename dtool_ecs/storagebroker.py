@@ -77,6 +77,9 @@ class ECSStorageBroker(S3StorageBroker):
         self.overlays_key_prefix = self._generate_key_prefix(
             "overlays_key_infix"
         )
+        self.annotations_key_prefix = self._generate_key_prefix(
+            "annotations_key_infix"
+        )
 
         self.http_manifest_key = self._generate_key("http_manifest_key")
 
