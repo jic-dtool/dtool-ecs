@@ -50,6 +50,19 @@ class ECSStorageBroker(S3StorageBroker):
             "DTOOL_ECS_SECRET_ACCESS_KEY_{}".format(self.bucket)
         )
 
+        if not ecs_endpoint:
+            raise RuntimeError("No ECS endpoint specified for bucket '{bucket}', "
+                               "please set DTOOL_ECS_ENDPOINT_{bucket}."
+                               .format(bucket=self.bucket))
+        if not ecs_access_key_id:
+            raise RuntimeError("No ECS access key id specified for bucket '{bucket}', "
+                               "please set DTOOL_ECS_ACCESS_KEY_ID_{bucket}."
+                               .format(bucket=self.bucket))
+        if not ecs_secret_access_key:
+            raise RuntimeError("No ECS secret access key specified for bucket '{bucket}', "
+                               "please set DTOOL_ECS_SECRET_ACCESS_KEY_{bucket}."
+                               .format(bucket=self.bucket))
+
         session = Session(
             aws_access_key_id=ecs_access_key_id,
             aws_secret_access_key=ecs_secret_access_key
