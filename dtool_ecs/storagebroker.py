@@ -71,12 +71,14 @@ class ECSStorageBroker(S3StorageBroker):
         self.s3resource = session.resource(
             's3',
             endpoint_url=ecs_endpoint,
-            config=BOTO3_CONFIG
+            config=BOTO3_CONFIG,
+            verify=False,
         )
         self.s3client = session.client(
             's3',
             endpoint_url=ecs_endpoint,
-            config=BOTO3_CONFIG
+            config=BOTO3_CONFIG,
+            verify=False,
         )
 
         self._structure_parameters = _ECS_STRUCTURE_PARAMETERS
@@ -128,7 +130,8 @@ class ECSStorageBroker(S3StorageBroker):
         resource = session.resource(
             's3',
             endpoint_url=ecs_endpoint,
-            config=BOTO3_CONFIG
+            config=BOTO3_CONFIG,
+            verify=False,
         )
 
         parse_result = generous_parse_uri(base_uri)
