@@ -93,6 +93,9 @@ class ECSStorageBroker(S3StorageBroker):
         self.annotations_key_prefix = self._generate_key_prefix(
             "annotations_key_infix"
         )
+        self.tags_key_prefix = self._generate_key_prefix(
+            "tags_key_infix"
+        )
 
         self.http_manifest_key = self._generate_key("http_manifest_key")
 

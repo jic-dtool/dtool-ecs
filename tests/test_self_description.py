@@ -36,6 +36,7 @@ def test_writing_of_dtool_structure_file(tmp_uuid_and_uri):  # NOQA
         "data_key_infix": "data",
         "fragment_key_infix": "fragments",
         "annotations_key_infix": "annotations",
+        "tags_key_infix": "tags",
         "overlays_key_infix": "overlays",
         "structure_key_suffix": "structure.json",
         "dtool_readme_key_suffix": "README.txt",
