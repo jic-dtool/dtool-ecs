@@ -1,7 +1,7 @@
 from setuptools import setup
 
 url = "https://github.com/jic-dtool/dtool-ecs"
-version = "0.4.0"
+version = "0.5.0"
 readme = open('README.rst').read()
 
 setup(
