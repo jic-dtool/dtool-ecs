@@ -31,6 +31,17 @@ Security
 ^^^^^^^^
 
 
+[0.5.0] - 2021-01-19
+--------------------
+
+Added
+^^^^^
+
+- Added support for working with tags.
+- Added verbose error reporting when endpoint information are missing.
+  Thanks to `Lars Pastewka <https://github.com/pastewka>`_.
+
+
 [0.4.0] - 2019-11-19
 --------------------
 
