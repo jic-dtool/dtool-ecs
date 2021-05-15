@@ -10,6 +10,9 @@ This change log uses principles from `keep a changelog <http://keepachangelog.co
 Added
 ^^^^^
 
+- User-specified prefix for object path, can be configured via
+  DTOOL_ECS_DATASET_PREFIX_* in the dtool configuration file
+
 
 Changed
 ^^^^^^^
