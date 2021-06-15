@@ -45,6 +45,67 @@ For example::
 
 See the `dtool documentation <http://dtool.readthedocs.io>`_ for more detail.
 
+Path prefix and access control
+------------------------------
+
+The ECS plugin supports a configurable prefix to the path. This can be used for
+access control to the dataset. For example, configure::
+
+    {
+       "DTOOL_ECS_DATASET_PREFIX_my-bucket": "u/olssont"
+    }
+
+and use the following S3 access to policy to that allows reading all data
+in the bucket but only writing to the prefix `u/<username>` and `dtool-`::
+
+    {
+      "Statement": [
+        {
+          "Sid": "AllowReadonlyAccess",
+          "Effect": "Allow",
+          "Action": [
+            "s3:ListBucket",
+            "s3:ListBucketVersions",
+            "s3:GetObject",
+            "s3:GetObjectTagging",
+            "s3:GetObjectVersion",
+            "s3:GetObjectVersionTagging"
+          ],
+          "Resource": [
+            "arn:aws:s3:::my-bucket",
+            "arn:aws:s3:::my-bucket/*"
+          ]
+        },
+        {
+          "Sid": "AllowPartialWriteAccess",
+          "Effect": "Allow",
+          "Action": [
+            "s3:DeleteObject",
+            "s3:PutObject",
+            "s3:PutObjectAcl"
+          ],
+          "Resource": [
+            "arn:aws:s3:::my-bucket/dtool-*",
+            "arn:aws:s3:::my-bucket/u/${aws:username}/*"
+          ]
+        },
+        {
+          "Sid": "AllowListAllBuckets",
+          "Effect": "Allow",
+          "Action": [
+            "s3:ListAllMyBuckets",
+            "s3:GetBucketLocation"
+          ],
+          "Resource": "arn:aws:s3:::*"
+        }
+      ]
+    }
+
+The user also needs write access to toplevel objects that start with `dtool-`.
+Those are the registration keys that are not stored under the configured
+prefix. The registration keys contain the prefix where the respective dataset
+is found. They are empty if no prefix is configured.
+
 Related packages
 ----------------
 
@@ -53,3 +114,4 @@ Related packages
 - `dtool-s3 <https://github.com/jic-dtool/dtool-s3>`_
 - `dtool-azure <https://github.com/jic-dtool/dtool-azure>`_
 - `dtool-irods <https://github.com/jic-dtool/dtool-irods>`_
+- `dtool-smb <https://github.com/IMTEK-Simulation/dtool-smb>`_

@@ -83,6 +83,8 @@ class ECSStorageBroker(S3StorageBroker):
         self.dataset_registration_key = 'dtool-{}'.format(self.uuid)
         self._structure_parameters["dataset_registration_key"] = self.dataset_registration_key  # NOQA
 
+        self.dataset_prefix = get_config_value("DTOOL_ECS_DATASET_PREFIX_{}".format(self.bucket))
+
         self.data_key_prefix = self._generate_key_prefix("data_key_infix")
         self.fragments_key_prefix = self._generate_key_prefix(
             "fragment_key_infix"
