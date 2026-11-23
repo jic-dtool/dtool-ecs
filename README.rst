@@ -114,4 +114,4 @@ Related packages
 - `dtool-s3 <https://github.com/jic-dtool/dtool-s3>`_
 - `dtool-azure <https://github.com/jic-dtool/dtool-azure>`_
 - `dtool-irods <https://github.com/jic-dtool/dtool-irods>`_
-- `dtool-smb <https://github.com/IMTEK-Simulation/dtool-smb>`_
+- `dtool-smb <https://github.com/jic-dtool/dtool-smb>`_
